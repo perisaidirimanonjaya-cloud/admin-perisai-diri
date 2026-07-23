@@ -1,0 +1,280 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+}
+
+.login-box {
+  max-width: 420px;
+
+  margin: auto;
+
+  background: white;
+
+  border-radius: 20px;
+
+  padding: 40px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+  text-align: center;
+}
+
+.logo {
+  font-size: 60px;
+
+  color: #2563eb;
+
+  margin-bottom: 15px;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+p {
+  color: gray;
+
+  margin-bottom: 25px;
+}
+
+.input-group {
+  text-align: left;
+
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+
+  padding: 14px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+}
+
+.password-box {
+  position: relative;
+}
+
+.password-box button {
+  position: absolute;
+
+  right: 10px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 18px;
+}
+
+.button {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.button {
+  background: #1d4ed8;
+  color: #1d4ed8;
+}
+
+#pesan {
+  margin-top: 15px;
+
+  color: red;
+
+  font-weight: bold;
+}
+
+/* Membuat tombol navbar HP yang sedang aktif terlihat jelas */
+.navbar-nav .btn.active {
+  background-color: #0d6efd !important; /* Warna biru Bootstrap */
+  border-color: #0d6efd !important;
+  color: #fff !important;
+}
+
+button[type="button"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #0d6efd; /* Warna biru */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button[type="button"]:hover {
+  background-color: #0b5ed7; /* Warna biru lebih gelap saat kursor diarahkan */
+}
+
+/* ===========================
+   LOADING OVERLAY
+=========================== */
+
+#loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.35s;
+
+  z-index: 99999;
+}
+
+#loadingOverlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.loading-box {
+  width: 350px;
+
+  background: #fff;
+
+  border-radius: 18px;
+
+  padding: 35px;
+
+  text-align: center;
+
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+
+  animation: popup 0.35s;
+}
+
+.loading-logo {
+  width: 90px;
+
+  margin-bottom: 20px;
+}
+
+/* Spinner */
+
+.spinner {
+  width: 65px;
+  height: 65px;
+
+  margin: 20px auto;
+
+  border: 6px solid #ddd;
+
+  border-top: 6px solid #c40000;
+
+  border-radius: 50%;
+
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.85);
+
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+
+    opacity: 1;
+  }
+}
+
+/* Success */
+
+.success-check {
+  font-size: 70px;
+
+  color: #16a34a;
+
+  animation: success 0.5s;
+}
+
+@keyframes success {
+  0% {
+    transform: scale(0.3);
+  }
+
+  70% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+#errorIcon {
+  font-size: 70px;
+
+  color: #dc2626;
+}

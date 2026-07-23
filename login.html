@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login Admin - Perisai Diri</title>
+
+    <link rel="stylesheet" href="login.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="login-box">
+        <i class="bi bi-shield-lock-fill logo"></i>
+
+        <h1>Admin Perisai Diri</h1>
+
+        <p>Masuk untuk mengelola data anggota</p>
+
+        <div class="input-group">
+          <label>Username</label>
+
+          <input type="text" id="username" placeholder="Masukkan username" />
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+
+          <div class="password-box">
+            <input
+              type="password"
+              id="password"
+              placeholder="Masukkan password"
+            />
+
+            <button id="togglePassword">
+              <i class="bi bi-eye-fill"></i>
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onclick="login(event)"
+          class="btn btn-primary w-100"
+        >
+          Masuk
+        </button>
+
+        <p id="pesan"></p>
+      </div>
+
+      <!-- Loading Overlay -->
+<div id="loadingOverlay">
+
+    <div class="loading-box">
+
+        <!-- Ganti src sesuai lokasi logo -->
+       
+
+        <div class="spinner"></div>
+
+        <h3 id="loadingTitle">Mengirim Data Pendaftaran</h3>
+
+        <p id="loadingMessage">
+            Mohon tunggu beberapa saat...
+        </p>
+
+    </div>
+
+    </div>
+
+  
+
+    <script src="login.js"></script>
+  </body>
+</html>

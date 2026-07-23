@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - Perisai Diri</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="admin-wrapper">
+      <!-- NAVBAR HP -->
+      <nav class="navbar navbar-dark bg-dark d-md-none px-3 fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+            <div
+              class="bg-primary text-white rounded-3 p-1 fw-bold d-flex align-items-center justify-content-center"
+              style="width: 32px; height: 32px; font-size: 0.9rem"
+            >
+              PD
+            </div>
+            <span class="fs-6 fw-bold">Perisai Diri</span>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMobileMenu"
+            aria-controls="navbarMobileMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse mt-2" id="navbarMobileMenu">
+            <ul class="navbar-nav gap-2 py-2">
+              <li class="nav-item">
+                <button
+                  onclick="showSection('dashboard', event)"
+                  class="btn btn-dark w-100 text-start active"
+                >
+                  <i class="bi bi-grid-1x2-fill me-2"></i> Dashboard
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  onclick="showSection('anggota', event)"
+                  class="btn btn-dark w-100 text-start"
+                >
+                  <i class="bi bi-people-fill me-2"></i> Data Anggota
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  onclick="showSection('statistik', event)"
+                  class="btn btn-dark w-100 text-start"
+                >
+                  <i class="bi bi-bar-chart-line-fill me-2"></i> Statistik
+                </button>
+              </li>
+              <li class="nav-item pt-2 border-top">
+                <button
+                  onclick="logout()"
+                  class="btn btn-outline-danger w-100 text-start fw-semibold"
+                >
+                  <i class="bi bi-box-arrow-right me-2"></i> Keluar
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- SIDEBAR LAPTOP -->
+      <aside
+        class="sidebar d-none d-md-flex flex-column justify-content-between bg-white border-end p-3"
+      >
+        <div>
+          <div class="sidebar-header d-flex align-items-center gap-3 mb-4">
+            <div
+              class="bg-primary text-white rounded-3 p-2 fw-bold d-flex align-items-center justify-content-center"
+              style="width: 40px; height: 40px"
+            >
+              PD
+            </div>
+            <div>
+              <h6 class="fw-bold m-0 text-dark">Perisai Diri</h6>
+              <small class="text-muted" style="font-size: 0.75rem"
+                >Admin Panel</small
+              >
+            </div>
+          </div>
+          <div class="sidebar-menu list-group list-group-flush">
+            <button
+              onclick="showSection('dashboard', event)"
+              class="list-group-item list-group-item-action border-0 rounded-3 mb-1 active"
+            >
+              <i class="bi bi-grid-1x2-fill me-2"></i> Dashboard
+            </button>
+            <button
+              onclick="showSection('anggota', event)"
+              class="list-group-item list-group-item-action border-0 rounded-3 mb-1"
+            >
+              <i class="bi bi-people-fill me-2"></i> Data Anggota
+            </button>
+            <button
+              onclick="showSection('statistik', event)"
+              class="list-group-item list-group-item-action border-0 rounded-3 mb-1"
+            >
+              <i class="bi bi-bar-chart-line-fill me-2"></i> Statistik
+            </button>
+          </div>
+        </div>
+        <div class="pt-3 border-top">
+          <button
+            onclick="logout()"
+            class="btn btn-outline-danger w-100 fw-semibold rounded-3 d-flex align-items-center justify-content-center gap-2"
+          >
+            <i class="bi bi-box-arrow-right"></i> Keluar
+          </button>
+        </div>
+      </aside>
+
+      <!-- KONTEN UTAMA -->
+      <main class="main-content flex-grow-1 p-4" style="margin-top: 50px">
+        <!-- TOP HEADER -->
+        <header
+          class="d-flex justify-content-between align-items-center bg-white p-3 px-4 rounded-4 shadow-sm mb-4"
+        >
+          <div class="d-flex align-items-center gap-2">
+            <span class="pulse-indicator"></span>
+            <span class="small fw-semibold text-muted"
+              >Google Sheets Connected</span
+            >
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <button
+              onclick="refreshData(this)"
+              class="btn btn-light btn-sm rounded-pill px-3 fw-semibold border d-flex align-items-center gap-2"
+            >
+              <i class="bi bi-arrow-clockwise" id="iconSync"></i> Sync Data
+            </button>
+            <div class="d-flex align-items-center gap-2 border-start ps-3">
+              <div class="avatar-circle">A</div>
+              <div class="d-none d-md-block text-start">
+                <div class="fw-bold small lh-1" id="adminNameDisplay">
+                  Admin Utama
+                </div>
+                <span class="text-muted" style="font-size: 0.75rem"
+                  >Super Admin</span
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- SECTION 1: DASHBOARD -->
+        <div id="dashboard-section" class="content-section active-section">
+          <div
+            class="card border-0 text-white p-4 mb-4 rounded-4 shadow-sm"
+            style="
+              background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            "
+          >
+            <h3 class="fw-bold mb-1">Selamat Datang, Admin! 🚀</h3>
+            <p class="mb-0 opacity-75">
+              Berikut adalah ringkasan data pendaftaran anggota baru.
+            </p>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-md-3 col-6">
+              <div class="card border-0 shadow-sm p-3 rounded-4 bg-white h-100">
+                <div class="text-muted small fw-semibold text-uppercase">
+                  Total Pendaftar
+                </div>
+                <h2 id="totalPendaftar" class="fw-bold text-primary my-1">-</h2>
+                <span class="small text-muted">Semua Jenjang</span>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="card border-0 shadow-sm p-3 rounded-4 bg-white h-100">
+                <div class="text-muted small fw-semibold text-uppercase">
+                  Tingkat SD
+                </div>
+                <h2 id="jumlahSD" class="fw-bold text-info my-1">-</h2>
+                <span class="small text-muted">Peserta SD</span>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="card border-0 shadow-sm p-3 rounded-4 bg-white h-100">
+                <div class="text-muted small fw-semibold text-uppercase">
+                  Tingkat SMP
+                </div>
+                <h2 id="jumlahSMP" class="fw-bold text-success my-1">-</h2>
+                <span class="small text-muted">Peserta SMP</span>
+              </div>
+            </div>
+            <div class="col-md-3 col-6">
+              <div class="card border-0 shadow-sm p-3 rounded-4 bg-white h-100">
+                <div class="text-muted small fw-semibold text-uppercase">
+                  Tingkat SMA/SMK
+                </div>
+                <h2 id="jumlahSMA" class="fw-bold text-warning my-1">-</h2>
+                <span class="small text-muted">Peserta SMA/SMK</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <div class="card border-0 shadow-sm p-4 rounded-4 bg-white">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <h5 class="fw-bold m-0">Pendaftar Terbaru</h5>
+                  <button
+                    onclick="showSection('anggota')"
+                    class="btn btn-sm btn-link text-decoration-none"
+                  >
+                    Lihat Semua
+                  </button>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Nama</th>
+                        <th>Jenjang</th>
+                        <th>Sekolah</th>
+                        <th>WhatsApp</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tableRecent">
+                      <tr>
+                        <td colspan="4" class="text-center py-4 text-muted">
+                          Memuat data...
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card border-0 shadow-sm p-4 rounded-4 bg-white mb-4">
+                <h5 class="fw-bold mb-3">Aksi Cepat</h5>
+                <div class="d-grid gap-2">
+                  <button
+                    class="btn btn-outline-primary text-start fw-semibold py-2 rounded-3"
+                    onclick="showSection('anggota')"
+                  >
+                    🔍 Cari & Filter Data
+                  </button>
+                  <button
+                    class="btn btn-outline-success text-start fw-semibold py-2 rounded-3"
+                    onclick="showSection('statistik')"
+                  >
+                    📊 Tampilkan Grafik
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: DATA ANGGOTA -->
+        <div id="anggota-section" class="content-section">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold m-0">Data Anggota Pendaftar</h3>
+            <button
+              onclick="eksporKeCSV()"
+              class="btn btn-success fw-semibold rounded-3 d-flex align-items-center gap-2"
+            >
+              <i class="bi bi-file-earmark-excel"></i> Ekspor ke Excel (CSV)
+            </button>
+          </div>
+
+          <div class="card border-0 shadow-sm p-3 rounded-4 bg-white mb-4">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <input
+                  type="text"
+                  id="searchInput"
+                  onkeyup="cariAnggota()"
+                  class="form-control rounded-3"
+                  placeholder="🔍 Cari berdasarkan nama atau sekolah..."
+                />
+              </div>
+              <div
+                class="col-md-6 d-flex gap-2 justify-content-md-end flex-wrap"
+              >
+                <button
+                  onclick="filterData('semua', this)"
+                  class="btn btn-dark btn-sm rounded-3 px-3 active-filter"
+                >
+                  Semua
+                </button>
+                <button
+                  onclick="filterData('sd', this)"
+                  class="btn btn-outline-dark btn-sm rounded-3 px-3"
+                >
+                  SD
+                </button>
+                <button
+                  onclick="filterData('smp', this)"
+                  class="btn btn-outline-dark btn-sm rounded-3 px-3"
+                >
+                  SMP
+                </button>
+                <button
+                  onclick="filterData('sma', this)"
+                  class="btn btn-outline-dark btn-sm rounded-3 px-3"
+                >
+                  SMA/SMK
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm p-3 rounded-4 bg-white">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Jenjang</th>
+                    <th>Sekolah</th>
+                    <th>Kelas</th>
+                    <th>Umur</th>
+                    <th>Tempat Lahir</th>
+                    <th>Tgl Lahir</th>
+                    <th>WhatsApp</th>
+                    <th>Alamat</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody id="tableData">
+                  <tr>
+                    <td colspan="11" class="text-center py-3">
+                      Memuat data...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: STATISTIK -->
+        <div id="statistik-section" class="content-section">
+          <h3 class="fw-bold mb-4">Statistik Pendaftar</h3>
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <div class="card card-stat-primary p-3">
+                <div class="stat-title">Total Pendaftar</div>
+                <h2 id="statTotalPendaftar" class="stat-value">-</h2>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-stat-success p-3">
+                <div class="stat-title">Rata-Rata Usia</div>
+                <h2 id="rataRataUmur" class="stat-value">-</h2>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-stat-warning p-3">
+                <div class="stat-title">Jenjang Terbanyak</div>
+                <h2 id="jenjangTerbanyak" class="stat-value">-</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm p-4 rounded-4 bg-white">
+            <h5 class="fw-bold mb-3">Grafik Distribusi Per Jenjang</h5>
+            <canvas id="grafikJenjang" height="100"></canvas>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Chart.js & Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="admin.js"></script>
+  </body>
+</html>
