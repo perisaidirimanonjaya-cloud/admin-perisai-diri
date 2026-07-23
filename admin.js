@@ -177,19 +177,19 @@ function updateStatistik(listData) {
 function hitungStatistik(listData) {
   if (!listData) return;
 
-  let sd = 0, smp = 0, sma = 0;
+  let sd = 0, smp = 0, smk = 0;
   listData.forEach((item) => {
     const sekolah = item.sekolah ? String(item.sekolah).toLowerCase() : "";
     const jenjang = item.jenjang ? String(item.jenjang).toLowerCase() : "";
 
     if (sekolah.includes("sd") || jenjang.includes("sd")) sd++;
     else if (sekolah.includes("smp") || jenjang.includes("smp")) smp++;
-    else if (sekolah.includes("sma") || sekolah.includes("smk") || jenjang.includes("sma") || jenjang.includes("smk")) sma++;
+    else if (sekolah.includes("smk") || sekolah.includes("smk") || jenjang.includes("smk") || jenjang.includes("smk")) smk++;
   });
 
   if (document.getElementById("jumlahSD")) document.getElementById("jumlahSD").innerText = sd;
   if (document.getElementById("jumlahSMP")) document.getElementById("jumlahSMP").innerText = smp;
-  if (document.getElementById("jumlahSMA")) document.getElementById("jumlahSMA").innerText = sma;
+  if (document.getElementById("jumlahSMK")) document.getElementById("jumlahSMK").innerText = smk;
 }
 
 // ==========================================
